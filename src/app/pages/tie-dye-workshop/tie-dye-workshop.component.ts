@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tie-dye-workshop',
@@ -10,13 +11,19 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./tie-dye-workshop.component.scss']
 })
 export class TieDyeWorkshopComponent {
+  constructor(private http: HttpClient) {}
+
   formData = {
     name: '',
     email: '',
     phone: '',
     participants: '1',
     experience: 'beginner',
-    specialRequests: ''
+    specialRequests: '',
+    age: '',
+    gender: '',
+    attendedBefore: '',
+    readyFor2026: false
   };
 
   experienceLevels = [
@@ -36,10 +43,52 @@ export class TieDyeWorkshopComponent {
     materialsIncluded: true
   };
 
+  isSubmitting = false;
+  showThankYouModal = false;
+  submittedName = '';
+  submittedEmail = '';
+
   onSubmit() {
-    console.log('Registration submitted:', this.formData);
-    alert(`Thank you ${this.formData.name}! Your registration for the Tie-Dye Workshop has been received. We'll send a confirmation email to ${this.formData.email} shortly.`);
-    this.resetForm();
+    if (this.isSubmitting) return;
+    
+    this.isSubmitting = true;
+    
+    // Prepare payload according to API structure
+    const payload = {
+      data: {
+        name: this.formData.name,
+        email: this.formData.email,
+        phone: this.formData.phone,
+        participants: this.formData.participants,
+        experience: this.formData.experience,
+        specialRequests: this.formData.specialRequests,
+        age: this.formData.age,
+        gender: this.formData.gender,
+        attendedBefore: this.formData.attendedBefore || 'No',
+        readyFor2026: this.formData.readyFor2026 ? 'Yes' : 'No'
+      }
+    };
+
+    this.http.post('https://api.aklinks.in/api/v1/event-users', payload)
+      .subscribe({
+        next: (response) => {
+          console.log('Registration successful:', response);
+          this.submittedName = this.formData.name;
+          this.submittedEmail = this.formData.email;
+          this.resetForm();
+          this.isSubmitting = false;
+          this.showThankYouModal = true;
+        },
+        error: (error) => {
+          console.error('Registration error:', error);
+          alert('There was an error submitting your registration. Please try again or contact us directly.');
+          this.isSubmitting = false;
+        }
+      });
+  }
+
+  closeThankYouModal() {
+    this.showThankYouModal = false;
   }
 
   resetForm() {
@@ -49,7 +98,11 @@ export class TieDyeWorkshopComponent {
       phone: '',
       participants: '1',
       experience: 'beginner',
-      specialRequests: ''
+      specialRequests: '',
+      age: '',
+      gender: '',
+      attendedBefore: '',
+      readyFor2026: false
     };
   }
 }

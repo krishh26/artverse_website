@@ -133,6 +133,73 @@
             </div>
 
             <div class="form-group">
+              <label for="age">Age *</label>
+              <input 
+                type="number" 
+                id="age" 
+                [(ngModel)]="formData.age" 
+                name="age" 
+                class="form-control" 
+                placeholder="Enter your age"
+                min="1"
+                max="120"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender *</label>
+              <select 
+                id="gender" 
+                [(ngModel)]="formData.gender" 
+                name="gender" 
+                class="form-control" 
+                required>
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Have you attended similar workshop before? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input 
+                    type="radio" 
+                    [(ngModel)]="formData.attendedBefore" 
+                    name="attendedBefore"
+                    value="Yes"
+                    class="radio-input"
+                    required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input 
+                    type="radio" 
+                    [(ngModel)]="formData.attendedBefore" 
+                    name="attendedBefore"
+                    value="No"
+                    class="radio-input"
+                    required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="formData.readyFor2026" 
+                  name="readyFor2026"
+                  class="checkbox-input">
+                <span>Are you ready to start your 2026 journey with ArtVerse</span>
+              </label>
+            </div>
+
+            <div class="form-group">
               <label for="participants">Number of Participants *</label>
               <select 
                 id="participants" 
@@ -176,8 +243,9 @@
             <button 
               type="submit" 
               class="btn btn-primary"
-              [disabled]="!registrationForm.valid">
-              Register Now
+              [disabled]="!registrationForm.valid || isSubmitting">
+              <span *ngIf="!isSubmitting">Register Now</span>
+              <span *ngIf="isSubmitting">Submitting...</span>
             </button>
           </form>
         </div>
@@ -207,4 +275,18 @@
     </div>
   </section>
 </section>
+
+<!-- Thank You Modal -->
+<div class="modal-overlay" *ngIf="showThankYouModal" (click)="closeThankYouModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeThankYouModal()" aria-label="Close">&times;</button>
+    <div class="modal-body">
+      <div class="success-icon">✓</div>
+      <h2>Thank You, {{ submittedName }}!</h2>
+      <p>Your registration for the Tie-Dye Workshop has been received successfully.</p>
+      <p>We'll send a confirmation email to <strong>{{ submittedEmail }}</strong> shortly.</p>
+      <button class="btn btn-primary modal-button" (click)="closeThankYouModal()">Close</button>
+    </div>
+  </div>
+</div>
 
