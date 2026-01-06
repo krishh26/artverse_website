@@ -30,6 +30,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent)
   },
   {
+    path: 'tie-dye-workshop',
+    loadComponent: () => import('./pages/tie-dye-workshop/tie-dye-workshop.component').then(m => m.TieDyeWorkshopComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

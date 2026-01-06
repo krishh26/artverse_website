@@ -1,0 +1,392 @@
+.tie-dye-workshop-page {
+  padding-top: 0;
+}
+
+// Hero Section
+.hero-section {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-off-white);
+  background-image: url('/assets/images/Shibori Techniques and Pronunciations - Jane Callender, Indigo Shibori Specialist.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-white);
+  padding: var(--spacing-xl) 0;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-white);
+  opacity: 0.95;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+// Workshop Details Section
+.workshop-details {
+  position: relative;
+  background: var(--color-off-white);
+  background-image: url('/assets/images/Cotton District Arts Festival Poster.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 1;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--spacing-xl);
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.details-content {
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-charcoal);
+  }
+  
+  .intro-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--color-charcoal-light);
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+.what-youll-learn,
+.whats-included {
+  margin-bottom: var(--spacing-lg);
+  
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--color-yellow-dark);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: var(--spacing-xs) 0;
+      padding-left: var(--spacing-md);
+      position: relative;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--color-charcoal);
+      
+      &::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--color-yellow-dark);
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+.details-sidebar {
+  .info-card {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 100px;
+    
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--color-charcoal);
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 2px solid var(--color-yellow);
+    }
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-beige);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &.price {
+      .info-value {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--color-yellow-dark);
+      }
+    }
+    
+    .info-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-charcoal-light);
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+    }
+    
+    .info-value {
+      font-size: 1.1rem;
+      color: var(--color-charcoal);
+      font-weight: 500;
+    }
+  }
+}
+
+// Registration Section
+.registration-section {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-beige) 0%, var(--color-off-white) 100%);
+  background-image: url('/assets/images/Cotton District Arts Festival Poster.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 1;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.registration-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-charcoal);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--color-charcoal-light);
+  }
+}
+
+.registration-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-wrapper {
+  background: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form {
+  .form-group {
+    margin-bottom: var(--spacing-md);
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: var(--spacing-xs);
+      color: var(--color-charcoal);
+      font-size: 0.95rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 2px solid var(--color-beige);
+      border-radius: 8px;
+      background: var(--color-off-white);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--color-charcoal);
+      transition: var(--transition-smooth);
+      
+      &:focus {
+        outline: none;
+        border-color: var(--color-yellow);
+        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+      }
+      
+      &::placeholder {
+        color: var(--color-charcoal-light);
+        opacity: 0.6;
+      }
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+    
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+}
+
+.btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  margin-top: var(--spacing-sm);
+  
+  &.btn-primary {
+    background: linear-gradient(135deg, var(--color-yellow) 0%, var(--color-yellow-dark) 100%);
+    color: var(--color-white);
+    
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--color-yellow-dark) 0%, var(--color-yellow) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}
+
+.form-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.info-box {
+  background: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-charcoal);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--color-yellow);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: var(--spacing-xs) 0;
+      padding-left: var(--spacing-md);
+      position: relative;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-charcoal);
+      
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--color-yellow-dark);
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+

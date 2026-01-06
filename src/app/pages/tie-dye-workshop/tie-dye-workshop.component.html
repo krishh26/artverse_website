@@ -1,0 +1,210 @@
+<section class="tie-dye-workshop-page">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="container">
+        <h1 class="hero-title">Tie-Dye Workshop</h1>
+        <p class="hero-subtitle">Create vibrant, one-of-a-kind designs</p>
+        <p class="hero-description">
+          Join us for an immersive workshop where you'll learn the art of tie-dyeing. 
+          Create stunning patterns and take home your own colorful masterpiece!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workshop Details Section -->
+  <section class="workshop-details section">
+    <div class="container">
+      <div class="details-grid">
+        <div class="details-content">
+          <h2>Workshop Overview</h2>
+          <p class="intro-text">
+            Discover the joy of creating vibrant, unique patterns through the ancient art of tie-dyeing. 
+            This hands-on workshop is perfect for all skill levels—from complete beginners to experienced crafters.
+          </p>
+          
+          <div class="what-youll-learn">
+            <h3>What You'll Learn</h3>
+            <ul>
+              <li>Basic tie-dye techniques and patterns</li>
+              <li>Color mixing and application methods</li>
+              <li>Folding techniques for different designs</li>
+              <li>Proper fabric preparation and care</li>
+              <li>Tips for creating professional-looking results</li>
+            </ul>
+          </div>
+
+          <div class="whats-included">
+            <h3>What's Included</h3>
+            <ul>
+              <li>All materials (fabric, dyes, rubber bands, gloves)</li>
+              <li>One cotton t-shirt or fabric item to dye</li>
+              <li>Step-by-step guidance from experienced instructors</li>
+              <li>Take-home care instructions</li>
+              <li>Light refreshments</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="details-sidebar">
+          <div class="info-card">
+            <h3>Workshop Details</h3>
+            <div class="info-item">
+              <span class="info-label">Date</span>
+              <span class="info-value">{{ workshopDetails.date }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Time</span>
+              <span class="info-value">{{ workshopDetails.time }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Duration</span>
+              <span class="info-value">{{ workshopDetails.duration }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Location</span>
+              <span class="info-value">{{ workshopDetails.location }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Address</span>
+              <span class="info-value">{{ workshopDetails.address }}</span>
+            </div>
+            <div class="info-item price">
+              <span class="info-label">Price</span>
+              <span class="info-value">{{ workshopDetails.price }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Max Participants</span>
+              <span class="info-value">{{ workshopDetails.maxParticipants }} people</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Form Section -->
+  <section class="registration-section section">
+    <div class="container">
+      <div class="registration-header">
+        <h2>Register for the Workshop</h2>
+        <p class="subtitle">Secure your spot today! Limited spaces available.</p>
+      </div>
+
+      <div class="registration-grid">
+        <div class="form-wrapper">
+          <form (ngSubmit)="onSubmit()" class="registration-form" #registrationForm="ngForm">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input 
+                type="text" 
+                id="name" 
+                [(ngModel)]="formData.name" 
+                name="name" 
+                class="form-control" 
+                placeholder="Enter your full name"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input 
+                type="email" 
+                id="email" 
+                [(ngModel)]="formData.email" 
+                name="email" 
+                class="form-control" 
+                placeholder="your.email@example.com"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                [(ngModel)]="formData.phone" 
+                name="phone" 
+                class="form-control" 
+                placeholder="(555) 123-4567"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="participants">Number of Participants *</label>
+              <select 
+                id="participants" 
+                [(ngModel)]="formData.participants" 
+                name="participants" 
+                class="form-control" 
+                required>
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5+ people</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="experience">Experience Level *</label>
+              <select 
+                id="experience" 
+                [(ngModel)]="formData.experience" 
+                name="experience" 
+                class="form-control" 
+                required>
+                <option *ngFor="let level of experienceLevels" [value]="level.value">
+                  {{ level.label }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="specialRequests">Special Requests or Notes</label>
+              <textarea 
+                id="specialRequests" 
+                [(ngModel)]="formData.specialRequests" 
+                name="specialRequests" 
+                class="form-control" 
+                rows="4"
+                placeholder="Any dietary restrictions, accessibility needs, or questions?"></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="btn btn-primary"
+              [disabled]="!registrationForm.valid">
+              Register Now
+            </button>
+          </form>
+        </div>
+
+        <div class="form-info">
+          <div class="info-box">
+            <h3>Important Information</h3>
+            <ul>
+              <li>Please arrive 10 minutes early for check-in</li>
+              <li>Wear clothes you don't mind getting colorful</li>
+              <li>All materials are provided</li>
+              <li>You'll take home your creation the same day</li>
+              <li>Cancellations accepted up to 48 hours before the event</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <h3>What to Bring</h3>
+            <ul>
+              <li>Your enthusiasm and creativity!</li>
+              <li>Optional: Your own white cotton item to dye</li>
+              <li>Comfortable clothing (that can get colorful)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
