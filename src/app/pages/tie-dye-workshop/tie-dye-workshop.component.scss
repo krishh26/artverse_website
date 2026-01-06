@@ -200,6 +200,32 @@
       font-size: 1.1rem;
       color: var(--color-charcoal);
       font-weight: 500;
+      
+      .address-link {
+        color: var(--color-charcoal);
+        text-decoration: none;
+        transition: var(--transition-smooth);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid transparent;
+        
+        .map-icon {
+          flex-shrink: 0;
+          color: var(--color-yellow-dark);
+          transition: var(--transition-smooth);
+        }
+        
+        &:hover {
+          color: var(--color-yellow-dark);
+          border-bottom-color: var(--color-yellow-dark);
+          
+          .map-icon {
+            transform: scale(1.1);
+            color: var(--color-yellow-dark);
+          }
+        }
+      }
     }
   }
 }

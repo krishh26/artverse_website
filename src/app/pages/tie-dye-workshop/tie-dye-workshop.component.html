@@ -69,16 +69,23 @@
             </div>
             <div class="info-item">
               <span class="info-label">Address</span>
-              <span class="info-value">{{ workshopDetails.address }}</span>
+              <span class="info-value">
+                <a [href]="workshopDetails.mapLink" target="_blank" rel="noopener noreferrer" class="address-link">
+                  <svg class="map-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+                  </svg>
+                  {{ workshopDetails.address }}
+                </a>
+              </span>
             </div>
             <div class="info-item price">
               <span class="info-label">Price</span>
               <span class="info-value">{{ workshopDetails.price }}</span>
             </div>
-            <div class="info-item">
+            <!-- <div class="info-item">
               <span class="info-label">Max Participants</span>
               <span class="info-value">{{ workshopDetails.maxParticipants }} people</span>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

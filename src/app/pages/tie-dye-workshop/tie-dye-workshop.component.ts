@@ -33,12 +33,13 @@ export class TieDyeWorkshopComponent {
   ];
 
   workshopDetails = {
-    date: 'March 30, 2024',
+    date: 'January 11, 2026',
     time: '2:00 PM - 5:00 PM',
     duration: '3 hours',
-    location: 'ArtVerse Creative Studio',
-    address: '123 Art Street, Downtown Arts District',
-    price: '$45 per person',
+    location: 'White Valley Cafe & Multi-cuisine Restaurant',
+    address: 'Dharamshi Korat Rd, opposite knockout game zone, Mota Mava, Rajkot, Gujarat 360005',
+    mapLink: 'https://maps.app.goo.gl/gkNJan1dakijxu6y7',
+    price: '299 per person',
     maxParticipants: 20,
     materialsIncluded: true
   };
