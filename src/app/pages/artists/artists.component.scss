@@ -1,0 +1,165 @@
+.artists-page {
+  padding-top: 80px;
+}
+
+.page-header {
+  background: linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-terracotta-dark) 100%);
+  color: var(--color-off-white);
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+  
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--color-off-white);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .page-subtitle {
+    font-size: 1.3rem;
+    font-family: var(--font-handwritten);
+    opacity: 0.9;
+  }
+}
+
+.section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-lg);
+  
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-charcoal);
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: var(--color-charcoal-light);
+    line-height: 1.8;
+  }
+}
+
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.artist-card {
+  background: var(--color-off-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.artist-portrait {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-terracotta-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.portrait-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  z-index: 1;
+  
+  span {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-off-white);
+  }
+}
+
+.artist-info {
+  padding: var(--spacing-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.artist-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-charcoal);
+}
+
+.artist-form {
+  font-family: var(--font-handwritten);
+  font-size: 1.2rem;
+      color: var(--color-yellow-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.artist-bio {
+  color: var(--color-charcoal-light);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+  flex: 1;
+}
+
+.artist-social {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: auto;
+  
+  .social-link {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-beige);
+    color: var(--color-yellow-dark);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    
+    &:hover {
+      background: var(--color-yellow);
+      color: var(--color-off-white);
+      transform: translateY(-2px);
+    }
+  }
+}
+

@@ -1,0 +1,124 @@
+.footer {
+  background: var(--color-black);
+  color: var(--color-beige);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+}
+
+.footer-brand {
+  h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-yellow);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .footer-tagline {
+    font-family: var(--font-handwritten);
+    font-size: 1.2rem;
+    color: var(--color-off-white);
+    opacity: 0.9;
+  }
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-section {
+  h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-yellow);
+  }
+  
+  ul {
+    list-style: none;
+    
+    li {
+      margin-bottom: var(--spacing-xs);
+      
+      a {
+        color: var(--color-off-white);
+        opacity: 0.8;
+        transition: var(--transition-smooth);
+        
+        &:hover {
+          opacity: 1;
+          color: var(--color-yellow);
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  
+  a {
+    color: var(--color-off-white);
+    opacity: 0.8;
+    transition: var(--transition-smooth);
+    
+    &:hover {
+      opacity: 1;
+      color: var(--color-yellow);
+      padding-left: 5px;
+    }
+  }
+}
+
+.footer-quote {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-md) 0;
+  margin: var(--spacing-md) 0;
+  text-align: center;
+  
+  .quote-text {
+    font-family: var(--font-handwritten);
+    font-size: 1.5rem;
+    color: var(--color-yellow);
+    font-style: italic;
+    
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+

@@ -1,0 +1,44 @@
+<section class="workshops-page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Workshops</h1>
+      <p class="page-subtitle">Discover hands-on creative experiences</p>
+    </div>
+  </div>
+  
+  <div class="workshops-content section">
+    <div class="container">
+      <div class="filters">
+        <div class="filter-group">
+          <label>Art Type</label>
+          <select [(ngModel)]="selectedArtType" class="filter-select">
+            <option *ngFor="let type of artTypes" [value]="type">
+              {{ type === 'all' ? 'All Types' : type }}
+            </option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>City</label>
+          <select [(ngModel)]="selectedCity" class="filter-select">
+            <option *ngFor="let city of cities" [value]="city">
+              {{ city === 'all' ? 'All Cities' : city }}
+            </option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="workshops-grid">
+        <app-artistic-card 
+          *ngFor="let workshop of filteredWorkshops" 
+          [data]="workshop">
+        </app-artistic-card>
+      </div>
+      
+      <div class="no-results" *ngIf="filteredWorkshops.length === 0">
+        <p>No workshops found matching your filters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+

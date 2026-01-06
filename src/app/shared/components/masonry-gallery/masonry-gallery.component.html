@@ -1,0 +1,23 @@
+<div class="masonry-gallery" [style.--columns]="columns">
+  <div class="gallery-item" *ngFor="let item of items" (click)="openLightbox(item)">
+    <div class="item-image">
+      <img [src]="item.image" [alt]="item.title || 'Gallery image'" loading="lazy">
+      <div class="item-overlay">
+        <h4 *ngIf="item.title" class="item-title">{{ item.title }}</h4>
+        <p *ngIf="item.description" class="item-description">{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" *ngIf="showLightbox && selectedItem" (click)="closeLightbox()">
+  <div class="lightbox-content" (click)="$event.stopPropagation()">
+    <button class="lightbox-close" (click)="closeLightbox()" aria-label="Close lightbox">×</button>
+    <img [src]="selectedItem.image" [alt]="selectedItem.title || 'Gallery image'">
+    <div class="lightbox-info" *ngIf="selectedItem.title || selectedItem.description">
+      <h3 *ngIf="selectedItem.title">{{ selectedItem.title }}</h3>
+      <p *ngIf="selectedItem.description">{{ selectedItem.description }}</p>
+    </div>
+  </div>
+</div>
+

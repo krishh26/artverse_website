@@ -1,0 +1,98 @@
+<section class="contact-page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Contact & Collaborate</h1>
+      <p class="page-subtitle">Let's create something together</p>
+    </div>
+  </div>
+  
+  <section class="contact-content section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p class="info-text">
+            Whether you're an artist looking to host a workshop, a curator interested 
+            in collaboration, or someone who simply loves art and culture—we'd love to hear from you.
+          </p>
+          
+          <div class="info-details">
+            <div class="info-item">
+              <h3>Email</h3>
+              <a href="mailto:hello&#64;artverse.com">hello&#64;artverse.com</a>
+            </div>
+            
+            <div class="info-item">
+              <h3>Follow Us</h3>
+              <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form-wrapper">
+          <form (ngSubmit)="onSubmit()" class="contact-form">
+            <div class="form-group">
+              <label for="type">I'm reaching out as:</label>
+              <select id="type" [(ngModel)]="formData.type" name="type" class="form-control" required>
+                <option *ngFor="let type of collaborationTypes" [value]="type.value">
+                  {{ type.label }}
+                </option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                [(ngModel)]="formData.name" 
+                name="name" 
+                class="form-control" 
+                required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                [(ngModel)]="formData.email" 
+                name="email" 
+                class="form-control" 
+                required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input 
+                type="text" 
+                id="subject" 
+                [(ngModel)]="formData.subject" 
+                name="subject" 
+                class="form-control" 
+                required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea 
+                id="message" 
+                [(ngModel)]="formData.message" 
+                name="message" 
+                class="form-control" 
+                rows="6" 
+                required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+

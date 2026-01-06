@@ -1,0 +1,25 @@
+<div class="artistic-card" [class.large]="variant === 'large'" [class.portrait]="variant === 'portrait'">
+  <div class="card-image" *ngIf="data.image">
+    <img [src]="data.image" [alt]="data.title" loading="lazy">
+    <div class="card-overlay"></div>
+  </div>
+  
+  <div class="card-content">
+    <div class="card-meta" *ngIf="data.category || data.date">
+      <span class="category" *ngIf="data.category">{{ data.category }}</span>
+      <span class="date" *ngIf="data.date">{{ data.date }}</span>
+    </div>
+    
+    <h3 class="card-title">{{ data.title }}</h3>
+    <p class="card-subtitle" *ngIf="data.subtitle">{{ data.subtitle }}</p>
+    <p class="card-description">{{ data.description }}</p>
+    
+    <div class="card-footer">
+      <span class="location" *ngIf="data.location">{{ data.location }}</span>
+      <a [routerLink]="data.link || '#'" class="card-link" *ngIf="data.link">
+        Learn More →
+      </a>
+    </div>
+  </div>
+</div>
+

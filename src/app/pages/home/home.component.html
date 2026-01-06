@@ -1,0 +1,57 @@
+<app-hero-section></app-hero-section>
+
+<section class="upcoming-section section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Upcoming Workshops</h2>
+      <p class="section-subtitle">Join us for hands-on creative experiences</p>
+    </div>
+    
+    <div class="workshops-grid">
+      <app-artistic-card 
+        *ngFor="let workshop of upcomingWorkshops" 
+        [data]="workshop">
+      </app-artistic-card>
+    </div>
+    
+    <div class="section-cta">
+      <a routerLink="/workshops" class="btn btn-primary">View All Workshops</a>
+    </div>
+  </div>
+</section>
+
+<section class="festivals-section section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Festivals & Events</h2>
+      <p class="section-subtitle">Celebrate art and culture with us</p>
+    </div>
+    
+    <div class="festivals-grid">
+      <app-artistic-card 
+        *ngFor="let festival of upcomingFestivals" 
+        [data]="festival"
+        variant="large">
+      </app-artistic-card>
+    </div>
+    
+    <div class="section-cta">
+      <a routerLink="/festivals" class="btn btn-secondary">Explore All Events</a>
+    </div>
+  </div>
+</section>
+
+<section class="mission-section section">
+  <div class="container">
+    <div class="mission-content">
+      <h2>Our Mission</h2>
+      <p class="mission-text">
+        ArtVerse is more than a platform—it's a movement. We believe that art and culture 
+        should be accessible to everyone. Through workshops, festivals, and creative gatherings, 
+        we foster a community where artists, creators, and art lovers can connect, learn, and grow together.
+      </p>
+      <a routerLink="/about" class="btn btn-primary">Learn More About Us</a>
+    </div>
+  </div>
+</section>
+

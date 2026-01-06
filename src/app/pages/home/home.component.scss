@@ -1,0 +1,109 @@
+.upcoming-section {
+  background: var(--color-off-white);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-charcoal);
+  }
+  
+  .section-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-charcoal-light);
+    font-family: var(--font-handwritten);
+  }
+}
+
+.workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.festivals-section {
+  background: var(--color-beige-light);
+}
+
+.festivals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-cta {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+.mission-section {
+  background: linear-gradient(135deg, var(--color-black) 0%, var(--color-black-light) 100%);
+  color: var(--color-off-white);
+  
+  h2 {
+    color: var(--color-yellow);
+  }
+}
+
+.mission-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  
+  .mission-text {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-beige);
+  }
+}
+
+.btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  display: inline-block;
+  
+  &.btn-primary {
+    background: var(--color-yellow);
+    color: var(--color-off-white);
+    
+    &:hover {
+      background: var(--color-yellow-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+    }
+  }
+  
+  &.btn-secondary {
+    background: transparent;
+    color: var(--color-blue-dark);
+    border: 2px solid var(--color-blue);
+    
+    &:hover {
+      background: var(--color-blue);
+      color: var(--color-off-white);
+      transform: translateY(-2px);
+    }
+  }
+}
+

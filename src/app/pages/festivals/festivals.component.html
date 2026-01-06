@@ -1,0 +1,37 @@
+<section class="festivals-page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Festivals & Flea Markets</h1>
+      <p class="page-subtitle">Celebrate art and culture with us</p>
+    </div>
+  </div>
+  
+  <section class="festivals-showcase section">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Upcoming Events</h2>
+        <p>Join us for unforgettable cultural experiences that bring together artists, creators, and art lovers.</p>
+      </div>
+      
+      <div class="festivals-grid">
+        <app-artistic-card 
+          *ngFor="let festival of festivals" 
+          [data]="festival"
+          variant="large">
+        </app-artistic-card>
+      </div>
+    </div>
+  </section>
+  
+  <section class="timeline-section section">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Festival Timeline</h2>
+        <p>Mark your calendar for these upcoming cultural celebrations</p>
+      </div>
+      
+      <app-event-timeline [events]="timelineEvents"></app-event-timeline>
+    </div>
+  </section>
+</section>
+

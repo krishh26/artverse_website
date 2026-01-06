@@ -1,0 +1,146 @@
+/* ArtVerse Design System - Matching Logo Colors */
+
+:root {
+  /* Color Palette - Based on Logo */
+  --color-black: #000000;
+  --color-black-light: #1a1a1a;
+  --color-yellow: #FFD700;
+  --color-yellow-light: #FFEB3B;
+  --color-yellow-dark: #FFC107;
+  --color-blue: #87CEEB;
+  --color-blue-light: #B0E0E6;
+  --color-blue-dark: #5F9EA0;
+  --color-white: #FFFFFF;
+  --color-off-white: #FAFAFA;
+  --color-gray: #4A4A4A;
+  --color-gray-light: #6A6A6A;
+  
+  /* Legacy colors for gradual migration - will be replaced */
+  --color-terracotta: #FFD700;
+  --color-terracotta-light: #FFEB3B;
+  --color-terracotta-dark: #FFC107;
+  --color-charcoal: #000000;
+  --color-charcoal-light: #4A4A4A;
+  --color-beige: #FAFAFA;
+  --color-beige-light: #FFFFFF;
+  --color-cream: #FAFAFA;
+  
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-handwritten: 'Caveat', cursive;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-black);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+a {
+  color: var(--color-yellow-dark);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  
+  &:hover {
+    color: var(--color-yellow);
+  }
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-smooth);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.section {
+  padding: var(--spacing-xl) 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-off-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-yellow);
+  border-radius: 5px;
+  
+  &:hover {
+    background: var(--color-yellow-dark);
+  }
+}
+
+/* Selection */
+::selection {
+  background: var(--color-yellow-light);
+  color: var(--color-black);
+}

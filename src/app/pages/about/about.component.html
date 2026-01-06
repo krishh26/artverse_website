@@ -1,0 +1,69 @@
+<section class="about-page">
+  <div class="page-header">
+    <div class="container">
+      <h1>About ArtVerse</h1>
+      <p class="page-subtitle">Our story and mission</p>
+    </div>
+  </div>
+  
+  <section class="story-section section">
+    <div class="container">
+      <div class="story-content">
+        <h2>Our Story</h2>
+        <div class="story-text">
+          <p>
+            ArtVerse was born from a simple belief: art and culture should be accessible, 
+            inclusive, and celebrated in all their forms. What started as a small gathering 
+            of artists and art enthusiasts has grown into a vibrant platform that connects 
+            creators, learners, and culture lovers.
+          </p>
+          <p>
+            We curate workshops, festivals, flea markets, and creative events that bring 
+            together diverse communities. From traditional pottery techniques to contemporary 
+            street art, from intimate gallery shows to large-scale cultural festivals—we 
+            create spaces where creativity thrives.
+          </p>
+          <p>
+            Our mission is to break down barriers between artists and audiences, between 
+            tradition and innovation, between different cultures and perspectives. ArtVerse 
+            is where these worlds meet, creating something beautiful together.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="values-section section">
+    <div class="container">
+      <h2 class="section-title">Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card" *ngFor="let value of values">
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="mission-section section">
+    <div class="container">
+      <div class="mission-content">
+        <h2>Why ArtVerse Exists</h2>
+        <p class="mission-text">
+          In a world that often feels disconnected, art has the power to bring us together. 
+          ArtVerse exists to create those moments of connection—through shared experiences, 
+          collaborative creation, and cultural celebration.
+        </p>
+        <p class="mission-text">
+          We're not just organizing events; we're building a movement. A movement that 
+          values handcrafted expression over mass production, authentic culture over 
+          commercial trends, and community over competition.
+        </p>
+        <div class="mission-cta">
+          <a routerLink="/contact" class="btn btn-primary">Join Our Community</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+

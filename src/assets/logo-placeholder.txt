@@ -1,0 +1,9 @@
+Please add your logo image file (logo.png) to this directory.
+The logo should be the "Art Verse The Folk Fest" logo with:
+- Black text "Art Verse"
+- Yellow sun graphic
+- Light blue accent bar
+- "THE FOLK FEST" subtitle
+
+Recommended dimensions: 200px width, auto height (or SVG format for best quality)
+
