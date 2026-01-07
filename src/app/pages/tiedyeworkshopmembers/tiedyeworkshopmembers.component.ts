@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 export interface WorkshopMember {
@@ -20,15 +21,17 @@ export interface WorkshopMember {
 @Component({
   selector: 'app-tiedyeworkshopmembers',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './tiedyeworkshopmembers.component.html',
   styleUrls: ['./tiedyeworkshopmembers.component.scss']
 })
 export class TieDyeWorkshopMembersComponent implements OnInit {
   members: WorkshopMember[] = [];
+  filteredMembers: WorkshopMember[] = [];
   isLoading = true;
   error: string | null = null;
   totalMembers = 0;
+  searchQuery: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -88,6 +91,7 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
           
           // Set total members from array length
           this.totalMembers = this.members.length;
+          this.filteredMembers = this.members;
           this.isLoading = false;
         },
         error: (error) => {
@@ -121,6 +125,34 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
     } catch (e) {
       return dateString;
     }
+  }
+
+  onSearchChange() {
+    if (!this.searchQuery || this.searchQuery.trim() === '') {
+      this.filteredMembers = this.members;
+      return;
+    }
+
+    const query = this.searchQuery.toLowerCase().trim();
+    this.filteredMembers = this.members.filter(member => {
+      return (
+        (member.name && member.name.toLowerCase().includes(query)) ||
+        (member.email && member.email.toLowerCase().includes(query)) ||
+        (member.phone && member.phone.includes(query)) ||
+        (member.age && member.age.toString().includes(query)) ||
+        (member.gender && member.gender.toLowerCase().includes(query)) ||
+        (member.participants && member.participants.includes(query)) ||
+        (member.experience && this.getExperienceLabel(member.experience).toLowerCase().includes(query)) ||
+        (member.attendedBefore && member.attendedBefore.toLowerCase().includes(query)) ||
+        (member.readyFor2026 && member.readyFor2026.toLowerCase().includes(query)) ||
+        (member.specialRequests && member.specialRequests.toLowerCase().includes(query))
+      );
+    });
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
+    this.filteredMembers = this.members;
   }
 }
 

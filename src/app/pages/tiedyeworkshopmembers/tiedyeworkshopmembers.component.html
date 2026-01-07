@@ -13,12 +13,39 @@
           <h2>Registered Members</h2>
           <p class="total-count" *ngIf="!isLoading && !error">
             Total: <strong>{{ totalMembers }}</strong> {{ totalMembers === 1 ? 'member' : 'members' }}
+            <span *ngIf="searchQuery && filteredMembers.length !== totalMembers">
+              ({{ filteredMembers.length }} found)
+            </span>
           </p>
         </div>
         <button class="btn-refresh" (click)="loadMembers()" [disabled]="isLoading">
           <span *ngIf="!isLoading">Refresh</span>
           <span *ngIf="isLoading">Loading...</span>
         </button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-container" *ngIf="!isLoading && !error && members.length > 0">
+        <div class="search-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <input 
+            type="text" 
+            class="search-input" 
+            placeholder="Search by name, email, phone, age, gender, experience..."
+            [(ngModel)]="searchQuery"
+            (input)="onSearchChange()">
+          <button 
+            class="search-clear" 
+            *ngIf="searchQuery"
+            (click)="clearSearch()"
+            aria-label="Clear search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Loading State -->
@@ -40,8 +67,15 @@
         <p>No members registered yet.</p>
       </div>
 
+      <!-- No Search Results -->
+      <div class="empty-state" *ngIf="!isLoading && !error && members.length > 0 && filteredMembers.length === 0 && searchQuery">
+        <div class="empty-icon">🔍</div>
+        <p>No members found matching "{{ searchQuery }}"</p>
+        <button class="btn btn-primary" (click)="clearSearch()">Clear Search</button>
+      </div>
+
       <!-- Members Table -->
-      <div class="table-container" *ngIf="!isLoading && !error && members.length > 0">
+      <div class="table-container" *ngIf="!isLoading && !error && filteredMembers.length > 0">
         <table class="members-table">
           <thead>
             <tr>
@@ -60,7 +94,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let member of members; let i = index">
+            <tr *ngFor="let member of filteredMembers; let i = index">
               <td class="row-number">{{ i + 1 }}</td>
               <td class="name-cell">{{ member.name || '-' }}</td>
               <td class="email-cell">

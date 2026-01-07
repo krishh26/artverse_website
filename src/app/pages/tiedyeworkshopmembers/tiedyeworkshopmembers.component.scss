@@ -26,13 +26,17 @@
 
 .members-content {
   padding: var(--spacing-xl) 0;
+  
+  .container {
+    // Keep container for header, but table will break out
+  }
 }
 
 .members-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
   flex-wrap: wrap;
   gap: var(--spacing-md);
   
@@ -51,6 +55,12 @@
       strong {
         color: var(--color-terracotta);
         font-size: 1.3rem;
+      }
+      
+      span {
+        color: var(--color-charcoal-light);
+        font-size: 1rem;
+        margin-left: var(--spacing-xs);
       }
     }
   }
@@ -75,6 +85,80 @@
     &:disabled {
       opacity: 0.6;
       cursor: not-allowed;
+    }
+  }
+}
+
+.search-container {
+  margin-bottom: var(--spacing-lg);
+  
+  .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    
+    .search-icon {
+      position: absolute;
+      left: var(--spacing-sm);
+      color: var(--color-charcoal-light);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) calc(var(--spacing-sm) * 2 + 20px);
+      border: 2px solid var(--color-beige);
+      border-radius: 50px;
+      background: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--color-charcoal);
+      transition: var(--transition-smooth);
+      outline: none;
+      
+      &:focus {
+        border-color: var(--color-yellow);
+        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+      }
+      
+      &::placeholder {
+        color: var(--color-charcoal-light);
+        opacity: 0.6;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 0.95rem;
+        padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-xs) calc(var(--spacing-xs) * 2 + 20px);
+      }
+    }
+    
+    .search-clear {
+      position: absolute;
+      right: var(--spacing-sm);
+      background: transparent;
+      border: none;
+      color: var(--color-charcoal-light);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition-smooth);
+      z-index: 1;
+      
+      &:hover {
+        background: var(--color-beige);
+        color: var(--color-charcoal);
+        transform: scale(1.1);
+      }
+      
+      @media (max-width: 768px) {
+        right: var(--spacing-xs);
+      }
     }
   }
 }
@@ -115,15 +199,65 @@
 .table-container {
   overflow-x: auto;
   background: var(--color-white);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   margin-top: var(--spacing-lg);
+  -webkit-overflow-scrolling: touch;
+  
+  // Full width on desktop with gaps on all sides
+  @media (min-width: 769px) {
+    width: calc(100vw - var(--spacing-md) * 2);
+    max-width: calc(100vw - var(--spacing-md) * 2);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: calc(-50vw + var(--spacing-md));
+    margin-right: calc(-50vw + var(--spacing-md));
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: var(--spacing-lg) 0;
+  }
+  
+  // Contained with border-radius on mobile
+  @media (max-width: 768px) {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    
+    // Add scrollbar styling for better UX
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: var(--color-beige);
+      border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-terracotta);
+      border-radius: 4px;
+      
+      &:hover {
+        background: var(--color-terracotta-dark);
+      }
+    }
+  }
 }
 
 .members-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
+  min-width: 800px; // Ensure minimum width for readability
+  
+  // Full width table on desktop with padding
+  @media (min-width: 769px) {
+    max-width: 100%;
+    padding: 0 var(--spacing-md);
+    box-sizing: border-box;
+  }
   
   thead {
     background: linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-terracotta-dark) 100%);
@@ -137,15 +271,62 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       white-space: nowrap;
+      min-width: 80px;
       
       &:first-child {
         padding-left: var(--spacing-lg);
         text-align: center;
         width: 50px;
+        min-width: 50px;
       }
       
       &:last-child {
         padding-right: var(--spacing-lg);
+      }
+      
+      // Column-specific min-widths for better mobile display
+      &:nth-child(2) { // Name
+        min-width: 120px;
+      }
+      
+      &:nth-child(3) { // Email
+        min-width: 150px;
+      }
+      
+      &:nth-child(4) { // Phone
+        min-width: 100px;
+      }
+      
+      &:nth-child(5) { // Age
+        min-width: 60px;
+      }
+      
+      &:nth-child(6) { // Gender
+        min-width: 80px;
+      }
+      
+      &:nth-child(7) { // Participants
+        min-width: 90px;
+      }
+      
+      &:nth-child(8) { // Experience
+        min-width: 100px;
+      }
+      
+      &:nth-child(9) { // Attended Before
+        min-width: 110px;
+      }
+      
+      &:nth-child(10) { // Ready for 2026
+        min-width: 100px;
+      }
+      
+      &:nth-child(11) { // Special Requests
+        min-width: 150px;
+      }
+      
+      &:nth-child(12) { // Registered Date
+        min-width: 120px;
       }
     }
   }
@@ -208,7 +389,8 @@
   .email-cell,
   .phone-cell {
     a {
-      word-break: break-all;
+      white-space: nowrap;
+      display: inline;
     }
   }
   
@@ -247,16 +429,177 @@
   }
   
   @media (max-width: 768px) {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     
     thead th,
     tbody td {
-      padding: var(--spacing-xs) 6px;
+      padding: var(--spacing-sm) 8px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      word-wrap: normal;
+      word-break: normal;
+    }
+    
+    thead th {
       font-size: 0.75rem;
+      padding: var(--spacing-sm) 6px;
+      white-space: nowrap;
+    }
+    
+    tbody td {
+      white-space: nowrap;
     }
     
     .special-requests-cell {
-      max-width: 150px;
+      max-width: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .email-cell,
+    .phone-cell {
+      white-space: nowrap;
+      
+      a {
+        word-break: normal;
+        white-space: nowrap;
+        display: inline;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+    min-width: 1200px; // Extended width to keep content on same line
+    
+    thead th {
+      font-size: 0.7rem;
+      padding: var(--spacing-xs) 6px;
+      white-space: nowrap;
+      line-height: 1.3;
+      
+      &:first-child {
+        min-width: 50px;
+      }
+      
+      &:nth-child(2) { // Name
+        min-width: 150px;
+      }
+      
+      &:nth-child(3) { // Email
+        min-width: 200px;
+      }
+      
+      &:nth-child(4) { // Phone
+        min-width: 120px;
+      }
+      
+      &:nth-child(5) { // Age
+        min-width: 60px;
+      }
+      
+      &:nth-child(6) { // Gender
+        min-width: 100px;
+      }
+      
+      &:nth-child(7) { // Participants
+        min-width: 110px;
+      }
+      
+      &:nth-child(8) { // Experience
+        min-width: 120px;
+      }
+      
+      &:nth-child(9) { // Attended Before
+        min-width: 130px;
+      }
+      
+      &:nth-child(10) { // Ready for 2026
+        min-width: 120px;
+      }
+      
+      &:nth-child(11) { // Special Requests
+        min-width: 180px;
+      }
+      
+      &:nth-child(12) { // Registered Date
+        min-width: 140px;
+      }
+    }
+    
+    tbody td {
+      padding: var(--spacing-xs) 6px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      word-wrap: normal;
+      word-break: normal;
+      line-height: 1.4;
+      
+      &:nth-child(2) { // Name
+        min-width: 150px;
+      }
+      
+      &:nth-child(3) { // Email
+        min-width: 200px;
+      }
+      
+      &:nth-child(4) { // Phone
+        min-width: 120px;
+      }
+      
+      &:nth-child(5) { // Age
+        min-width: 60px;
+      }
+      
+      &:nth-child(6) { // Gender
+        min-width: 100px;
+      }
+      
+      &:nth-child(7) { // Participants
+        min-width: 110px;
+      }
+      
+      &:nth-child(8) { // Experience
+        min-width: 120px;
+      }
+      
+      &:nth-child(9) { // Attended Before
+        min-width: 130px;
+      }
+      
+      &:nth-child(10) { // Ready for 2026
+        min-width: 120px;
+      }
+      
+      &:nth-child(11) { // Special Requests
+        min-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      &:nth-child(12) { // Registered Date
+        min-width: 140px;
+      }
+    }
+    
+    .special-requests-cell {
+      max-width: none;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .email-cell,
+    .phone-cell {
+      white-space: nowrap;
+      
+      a {
+        word-break: normal;
+        white-space: nowrap;
+        display: inline;
+      }
     }
   }
 }
