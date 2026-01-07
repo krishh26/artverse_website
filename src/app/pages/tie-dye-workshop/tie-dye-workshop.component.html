@@ -110,9 +110,14 @@
                 id="name" 
                 [(ngModel)]="formData.name" 
                 name="name" 
+                #nameInput="ngModel"
                 class="form-control" 
+                [class.error]="nameInput.invalid && nameInput.touched"
                 placeholder="Enter your full name"
                 required>
+              <div class="error-message" *ngIf="nameInput.invalid && nameInput.touched">
+                <span *ngIf="nameInput.errors?.['required']">Full name is required</span>
+              </div>
             </div>
 
             <div class="form-group">
@@ -122,9 +127,16 @@
                 id="email" 
                 [(ngModel)]="formData.email" 
                 name="email" 
+                #emailInput="ngModel"
                 class="form-control" 
+                [class.error]="emailInput.invalid && emailInput.touched"
                 placeholder="your.email@example.com"
-                required>
+                required
+                email>
+              <div class="error-message" *ngIf="emailInput.invalid && emailInput.touched">
+                <span *ngIf="emailInput.errors?.['required']">Email address is required</span>
+                <span *ngIf="emailInput.errors?.['email'] && !emailInput.errors?.['required']">Please enter a valid email address</span>
+              </div>
             </div>
 
             <div class="form-group">
@@ -134,9 +146,14 @@
                 id="phone" 
                 [(ngModel)]="formData.phone" 
                 name="phone" 
+                #phoneInput="ngModel"
                 class="form-control" 
+                [class.error]="phoneInput.invalid && phoneInput.touched"
                 placeholder="(+91) 00000 00000"
                 required>
+              <div class="error-message" *ngIf="phoneInput.invalid && phoneInput.touched">
+                <span *ngIf="phoneInput.errors?.['required']">Phone number is required</span>
+              </div>
             </div>
 
             <div class="form-group">
@@ -146,11 +163,18 @@
                 id="age" 
                 [(ngModel)]="formData.age" 
                 name="age" 
+                #ageInput="ngModel"
                 class="form-control" 
+                [class.error]="ageInput.invalid && ageInput.touched"
                 placeholder="Enter your age"
                 min="1"
                 max="120"
                 required>
+              <div class="error-message" *ngIf="ageInput.invalid && ageInput.touched">
+                <span *ngIf="ageInput.errors?.['required']">Age is required</span>
+                <span *ngIf="ageInput.errors?.['min'] && !ageInput.errors?.['required']">Age must be at least 1</span>
+                <span *ngIf="ageInput.errors?.['max'] && !ageInput.errors?.['required']">Age must be at most 120</span>
+              </div>
             </div>
 
             <div class="form-group">
@@ -159,7 +183,9 @@
                 id="gender" 
                 [(ngModel)]="formData.gender" 
                 name="gender" 
+                #genderInput="ngModel"
                 class="form-control" 
+                [class.error]="genderInput.invalid && genderInput.touched"
                 required>
                 <option value="">Select gender</option>
                 <option value="Male">Male</option>
@@ -167,6 +193,9 @@
                 <option value="Other">Other</option>
                 <option value="Prefer not to say">Prefer not to say</option>
               </select>
+              <div class="error-message" *ngIf="genderInput.invalid && genderInput.touched">
+                <span *ngIf="genderInput.errors?.['required']">Please select your gender</span>
+              </div>
             </div>
 
             <div class="form-group">
@@ -177,6 +206,7 @@
                     type="radio" 
                     [(ngModel)]="formData.attendedBefore" 
                     name="attendedBefore"
+                    #attendedBeforeInput="ngModel"
                     value="Yes"
                     class="radio-input"
                     required>
@@ -192,6 +222,9 @@
                     required>
                   <span>No</span>
                 </label>
+              </div>
+              <div class="error-message" *ngIf="attendedBeforeInput.invalid && attendedBeforeInput.touched">
+                <span *ngIf="attendedBeforeInput.errors?.['required']">Please select an option</span>
               </div>
             </div>
 
@@ -212,7 +245,9 @@
                 id="participants" 
                 [(ngModel)]="formData.participants" 
                 name="participants" 
+                #participantsInput="ngModel"
                 class="form-control" 
+                [class.error]="participantsInput.invalid && participantsInput.touched"
                 required>
                 <option value="1">1 person</option>
                 <option value="2">2 people</option>
@@ -220,6 +255,9 @@
                 <option value="4">4 people</option>
                 <option value="5">5+ people</option>
               </select>
+              <div class="error-message" *ngIf="participantsInput.invalid && participantsInput.touched">
+                <span *ngIf="participantsInput.errors?.['required']">Please select number of participants</span>
+              </div>
             </div>
 
             <div class="form-group">
@@ -228,12 +266,17 @@
                 id="experience" 
                 [(ngModel)]="formData.experience" 
                 name="experience" 
+                #experienceInput="ngModel"
                 class="form-control" 
+                [class.error]="experienceInput.invalid && experienceInput.touched"
                 required>
                 <option *ngFor="let level of experienceLevels" [value]="level.value">
                   {{ level.label }}
                 </option>
               </select>
+              <div class="error-message" *ngIf="experienceInput.invalid && experienceInput.touched">
+                <span *ngIf="experienceInput.errors?.['required']">Please select your experience level</span>
+              </div>
             </div>
 
             <div class="form-group">

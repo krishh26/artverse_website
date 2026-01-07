@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./tie-dye-workshop.component.scss']
 })
 export class TieDyeWorkshopComponent {
+  @ViewChild('registrationForm') registrationForm!: NgForm;
+  
   constructor(private http: HttpClient) {}
 
   formData = {
@@ -51,6 +53,18 @@ export class TieDyeWorkshopComponent {
 
   onSubmit() {
     if (this.isSubmitting) return;
+    
+    // Mark all form controls as touched to show validation errors
+    if (this.registrationForm) {
+      Object.keys(this.registrationForm.controls).forEach(key => {
+        this.registrationForm.controls[key].markAsTouched();
+      });
+    }
+    
+    // Prevent submission if form is invalid
+    if (!this.registrationForm.valid) {
+      return;
+    }
     
     this.isSubmitting = true;
     
