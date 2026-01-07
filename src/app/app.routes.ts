@@ -35,6 +35,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/tie-dye-workshop/tie-dye-workshop.component').then(m => m.TieDyeWorkshopComponent)
   },
   {
+    path: 'tiedyeworkshopmembers',
+    loadComponent: () => import('./pages/tiedyeworkshopmembers/tiedyeworkshopmembers.component').then(m => m.TieDyeWorkshopMembersComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

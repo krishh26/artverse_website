@@ -39,7 +39,7 @@ export class TieDyeWorkshopComponent {
     location: 'White Valley Cafe & Multi-cuisine Restaurant',
     address: 'Dharamshi Korat Rd, opposite knockout game zone, Mota Mava, Rajkot, Gujarat 360005',
     mapLink: 'https://maps.app.goo.gl/gkNJan1dakijxu6y7',
-    price: '299 per person',
+    price: '349 per person',
     maxParticipants: 20,
     materialsIncluded: true
   };
