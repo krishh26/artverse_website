@@ -40,22 +40,25 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
     this.isLoading = true;
     this.error = null;
 
-    // Fetch members from the API
+    // Fetch members from the API (no pagination parameters)
     this.http.get<any>('https://api.aklinks.in/api/v1/event-users')
       .subscribe({
         next: (response) => {
           console.log('API Response:', response);
           
-          // Handle different API response structures
+          // Handle the API response structure: { status: "success", data: { items: [...] } }
           let membersData: any[] = [];
           
-          if (response && response.data && Array.isArray(response.data)) {
+          if (response && response.status === 'success' && response.data && response.data.items && Array.isArray(response.data.items)) {
+            // Response structure: { status: "success", data: { items: [...] } }
+            membersData = response.data.items;
+          } else if (response && response.data && Array.isArray(response.data)) {
             // Response structure: { data: [...] }
             membersData = response.data;
           } else if (response && Array.isArray(response)) {
             // Response is directly an array
             membersData = response;
-          } else if (response && response.data && Array.isArray(response.data.data)) {
+          } else if (response && response.data && response.data.data && Array.isArray(response.data.data)) {
             // Nested data structure: { data: { data: [...] } }
             membersData = response.data.data;
           } else {
@@ -63,12 +66,12 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
           }
           
           // Map the API data to our member interface
-          this.members = membersData.map((item: any) => {
+          this.members = membersData.map((item: any, index: number) => {
             // Handle both direct properties and nested data structure
             const memberData = item.data || item;
             
             return {
-              id: item.id || memberData.id,
+              id: item._id || item.id || memberData.id,
               name: memberData.name || '',
               email: memberData.email || '',
               phone: memberData.phone || '',
@@ -83,6 +86,7 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
             };
           });
           
+          // Set total members from array length
           this.totalMembers = this.members.length;
           this.isLoading = false;
         },
@@ -101,6 +105,22 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
       'advanced': 'Advanced'
     };
     return labels[experience] || experience;
+  }
+
+  formatDate(dateString: string): string {
+    if (!dateString) return '-';
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch (e) {
+      return dateString;
+    }
   }
 }
 
