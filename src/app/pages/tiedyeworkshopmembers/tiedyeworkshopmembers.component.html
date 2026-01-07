@@ -1,7 +1,7 @@
 <section class="members-page">
   <div class="page-header">
     <div class="container">
-      <h1>Tie-Dye Workshop Members</h1>
+      <h1>Tie-Dye Workshop Participants </h1>
       <p class="page-subtitle">Registered participants for the workshop</p>
     </div>
   </div>
@@ -10,7 +10,7 @@
     <div class="container">
       <div class="members-header">
         <div class="header-info">
-          <h2>Registered Members</h2>
+          <h2>Registered Participants </h2>
           <p class="total-count" *ngIf="!isLoading && !error">
             Total Participants: <strong>{{ totalParticipants }}</strong> {{ totalParticipants === 1 ? 'participant' : 'participants' }}
             <span *ngIf="searchQuery && filteredMembers.length !== totalMembers">
