@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private updateVisibility() {
     const url = this.router.url;
-    const isTieDyePage = url.includes('/tie-dye-workshop');
+    const isTieDyePage = url.includes('/tie-dye-workshop') || url.includes('/tiedyeworkshopmembers');
     this.showNavbar = !isTieDyePage;
     this.showFooter = !isTieDyePage;
   }
