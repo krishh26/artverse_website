@@ -31,6 +31,7 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
   isLoading = true;
   error: string | null = null;
   totalMembers = 0;
+  totalParticipants = 0;
   searchQuery: string = '';
 
   constructor(private http: HttpClient) {}
@@ -91,6 +92,11 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
           
           // Set total members from array length
           this.totalMembers = this.members.length;
+          // Calculate total participants by summing all participants values
+          this.totalParticipants = this.members.reduce((sum, member) => {
+            const participants = parseInt(member.participants, 10) || 0;
+            return sum + participants;
+          }, 0);
           this.filteredMembers = this.members;
           this.isLoading = false;
         },
@@ -153,6 +159,13 @@ export class TieDyeWorkshopMembersComponent implements OnInit {
   clearSearch() {
     this.searchQuery = '';
     this.filteredMembers = this.members;
+  }
+
+  getFilteredParticipantsCount(): number {
+    return this.filteredMembers.reduce((sum, member) => {
+      const participants = parseInt(member.participants, 10) || 0;
+      return sum + participants;
+    }, 0);
   }
 }
 

@@ -12,9 +12,9 @@
         <div class="header-info">
           <h2>Registered Members</h2>
           <p class="total-count" *ngIf="!isLoading && !error">
-            Total: <strong>{{ totalMembers }}</strong> {{ totalMembers === 1 ? 'member' : 'members' }}
+            Total Participants: <strong>{{ totalParticipants }}</strong> {{ totalParticipants === 1 ? 'participant' : 'participants' }}
             <span *ngIf="searchQuery && filteredMembers.length !== totalMembers">
-              ({{ filteredMembers.length }} found)
+              ({{ getFilteredParticipantsCount() }} found)
             </span>
           </p>
         </div>
