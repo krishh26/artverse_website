@@ -34,8 +34,8 @@ export class TieDyeWorkshopComponent {
 
   workshopDetails = {
     date: 'January 11, 2026',
-    time: '2:00 PM - 5:00 PM',
-    duration: '3 hours',
+    time: '3:00 PM - 5:00 PM',
+    duration: '2 hours',
     location: 'White Valley Cafe & Multi-cuisine Restaurant',
     address: 'Dharamshi Korat Rd, opposite knockout game zone, Mota Mava, Rajkot, Gujarat 360005',
     mapLink: 'https://maps.app.goo.gl/gkNJan1dakijxu6y7',

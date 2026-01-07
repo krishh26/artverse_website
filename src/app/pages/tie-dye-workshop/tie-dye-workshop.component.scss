@@ -365,34 +365,42 @@
       
       .address-link {
         color: var(--color-charcoal);
-        text-decoration: none;
+        text-decoration: underline;
+        text-decoration-color: var(--color-yellow-dark);
+        text-underline-offset: 3px;
         transition: var(--transition-smooth);
         display: inline-flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 0.5rem;
-        border-bottom: 1px solid transparent;
         word-break: break-word;
         overflow-wrap: break-word;
         max-width: 100%;
 
         @media (max-width: 480px) {
-          flex-wrap: wrap;
-          gap: 0.25rem;
+          gap: 0.4rem;
+          align-items: flex-start;
         }
         
         .map-icon {
           flex-shrink: 0;
           color: var(--color-yellow-dark);
           transition: var(--transition-smooth);
+          margin-top: 2px;
+          vertical-align: top;
+          display: inline-block;
+
+          @media (max-width: 480px) {
+            margin-top: 3px;
+          }
         }
         
         &:hover {
           color: var(--color-yellow-dark);
-          border-bottom-color: var(--color-yellow-dark);
+          text-decoration-color: var(--color-yellow);
           
           .map-icon {
             transform: scale(1.1);
-            color: var(--color-yellow-dark);
+            color: var(--color-yellow);
           }
         }
       }
